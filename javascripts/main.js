@@ -35,7 +35,13 @@ $(document).ready(function() {
 
   	});
 
-  });
+
+  	});
+  	let contTask = () => {
+  		let remainingTasks = $('#incomplete-tasks li').length;
+  		$('#counter').hide().fadein(3000).html(remainingTasks);
+
+  };
 
 
 });

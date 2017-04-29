@@ -5,7 +5,7 @@ $(document).ready(function() {
         $('.new-container').removeClass('hide');
     });
 
-    $('#new-item').click(() => {
+    $('#list-items').click(() => {
         $('.new-container').addClass('hide');
         $('.list-container').removeClass('hide');
 
@@ -18,6 +18,24 @@ $(document).ready(function() {
             console.log("getTodos error", error);
 
         });
+
+  $('#add-todo-button').click(() => {
+  	let newTodo = {
+  		isCompleted: false,
+  		task: $('#add-todo-text').val()
+  	};
+  	console.log("newTodo", newTodo);
+  	FbApi.addTodo(newTodo).then(() => {
+  		$('#add-todo-text').val("");
+  		$('.new-container').addClass('hide');
+        $('.list-container').removeClass('hide');
+  		FbApi.writeDom();
+  	}).catch((error) => {
+  		console.log(error);
+
+  	});
+
+  });
 
 
 });

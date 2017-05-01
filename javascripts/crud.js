@@ -28,6 +28,19 @@ oldCrap.addTodo = (newTodo) => {
 	});	
 };
 
+oldCrap.checker = (id) => {
+	return new Promise ((resolve, reject) => {
+	FbApi.setChecked(id);
+	resolve();
+	});	
+};
+
+oldCrap.deleteTodo = (id) => {
+    return new Promise ((resolve, reject) => {
+        FbApi.duhlete(id);
+        resolve();
+    });
+};
 
 
     return oldCrap;

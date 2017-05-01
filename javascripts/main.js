@@ -37,6 +37,30 @@ $(document).ready(function() {
 
 
   	});
+
+  $('.main-container').on('click', '.delete', (event) => {
+    FbApi.deleteTodo(event.target.id).then(() => {
+      FbApi.writeDom();
+      contTask();
+    }).catch((error) => {
+      console.log("error in delete", error);
+
+    });
+  });
+
+  $('.main-container').on("click", 'input[type="checkbox"]', (event) => {
+  	console.log("id", event.target.id);
+  	FbApi.checker(event.target.id).then(() => {
+  		FbApi.writeDom();
+  		countTask();
+  	}).catch((error) => {
+  		console.log(error);
+
+  	});
+  });
+
+
+
   	let contTask = () => {
   		let remainingTasks = $('#incomplete-tasks li').length;
   		$('#counter').hide().fadein(3000).html(remainingTasks);

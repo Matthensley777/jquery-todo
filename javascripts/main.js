@@ -90,11 +90,20 @@ $('#registerButton').click(() =>{
 
   let user = {email, password};
   FbApi.registerUser(user).then((response) => {
-    console.log("register response", response.uid);
     let newUser = {
       uid: response.uid,
       username: username
     }
+    FbApi.loginUser(user).then((response) => {
+    clearLogin();
+    $('#login-container').addClass('hide');
+    $('main-container').removeClass('hide');
+    FbApi.createLogoutButton(apiKeys);
+    FbApi.writeDom(apiKeys);
+  }).catch((error) => {
+    console.log(error);
+
+  });
     FbApi.addUser(apiKeys, newUser).then((response) => {
       console.log("response", response);
 
@@ -125,6 +134,7 @@ $('#loginButton').click(() => {
     clearLogin();
     $('#login-container').addClass('hide');
     $('main-container').removeClass('hide');
+    FbApi.creatLogoutButton(apiKeys);
     FbApi.writeDom(apiKeys);
   }).catch((error) => {
     console.log(error);
@@ -132,6 +142,12 @@ $('#loginButton').click(() => {
   });
 });
 
+$('#logout-container').on('click', '#logoutButton', () => {
+  clearLogin();
+  FbApi.logoutUser();
+  $('#login-container').removeClass('hide');
+  $('main-container').addClass('hide');
+})
 
 
 

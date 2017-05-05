@@ -17,9 +17,18 @@ cats.loginUser = (creds) => {
 			resolve(authData);
 		}).catch((error) => {
 			reject(error);
-		})
-	})
+		});
+	});
+};
+
+cats.credentialsCurrentUser = () => {
+	return firebase.auth().currentUser;
+};
+
+cats.logoutUser = () => {
+	firebase.auth().signOut();
 }
+
 
 	return cats;
 })(FbApi || {});

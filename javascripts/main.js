@@ -134,8 +134,8 @@ $('#loginButton').click(() => {
     clearLogin();
     $('#login-container').addClass('hide');
     $('main-container').removeClass('hide');
-    FbApi.creatLogoutButton(apiKeys);
     FbApi.writeDom(apiKeys);
+    FbApi.creatLogoutButton(apiKeys);
   }).catch((error) => {
     console.log(error);
 
@@ -147,7 +147,7 @@ $('#logout-container').on('click', '#logoutButton', () => {
   FbApi.logoutUser();
   $('#login-container').removeClass('hide');
   $('main-container').addClass('hide');
-})
+});
 
 
 
